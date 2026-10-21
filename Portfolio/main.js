@@ -17,6 +17,10 @@ const subjectError = document.querySelector("#subject-error");
 
 const messageError = document.querySelector("#message-error");
 
+const websiteField = document.querySelector("#website");
+const websiteError = document.querySelector("#website-error");
+
+
 
 
 function updateCharacterCounter() {
@@ -130,6 +134,34 @@ function validateEmail() {
             return true;
     }
 
+function validateWebsite() {
+    const website = websiteField.value.trim();
+
+    if (website === "") {
+        websiteError.textContent = "";
+        emailField.classList.remove("is-error", "is-valid") ;
+        emailField.setAttribute("aria-invalid", "false"); 
+        
+        return true;
+    }
+
+    if (!websiteField.validity.valid) {
+        websiteError.textContent = "Please enter a valid website adress, for example https://example.com.";
+        websiteField.classList.add("is-error");
+        websiteField.classList.remove("is-valid");
+        websiteField.setAttribute("aria-invalid", "true");  
+
+        return false;
+    }
+
+    websiteError.textContent = "";
+    websiteField.classList.remove("is-error");
+    websiteField.classList.add("is-valid");
+    websiteField.setAttribute("aria-invalid", "false"); 
+
+        return true;
+
+     }
 
 
 
@@ -177,5 +209,13 @@ function validateEmail() {
     messageField.addEventListener("input", () => {
         if(messageField.classList.contains("is-error")){
             validateMessage();
+        }
+    });
+
+    websiteField.addEventListener("blur", validateWebsite);
+
+    websiteField.addEventListener("input", () => {
+        if(websiteField.classList.contains("is-error")) {
+            validateWebsite();
         }
     });
