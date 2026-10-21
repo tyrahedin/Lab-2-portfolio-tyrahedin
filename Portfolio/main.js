@@ -12,6 +12,9 @@ const nameError = document.querySelector("#name-error");
 const emailField = document.querySelector("#email");
 const emailError = document.querySelector("#email-error");
 
+const subjectField = document.querySelector("#subject");
+const subjectError = document.querySelector("#subject-error");
+
 
 
 function updateCharacterCounter() {
@@ -86,6 +89,23 @@ function validateEmail() {
 
      }
 
+     function validateSubject(){
+        if (subjectField.value ==="") {
+            subjectError.textContent = "Pleae choose a topic";
+            subjectField.classList.add("is-error");
+            subjectField.classList.remove("is-valid");
+            subjectField.setAttribute("aria-invalid", "true");  
+    
+            return false;
+        }
+
+            subjectError.textContent = "";
+            subjectField.classList.remove("is-error");
+            subjectField.classList.add("is-valid");
+            subjectField.setAttribute("aria-invalid", "false");  
+
+            return true;
+    }
 
 
 
@@ -124,3 +144,7 @@ function validateEmail() {
             validateEmail();
         }
     });
+
+    subjectField.addEventListener("blur", validateSubject);
+
+    subjectField.addEventListener("change", validateSubject);
