@@ -15,6 +15,8 @@ const emailError = document.querySelector("#email-error");
 const subjectField = document.querySelector("#subject");
 const subjectError = document.querySelector("#subject-error");
 
+const messageError = document.querySelector("#message-error");
+
 
 
 function updateCharacterCounter() {
@@ -107,6 +109,27 @@ function validateEmail() {
             return true;
     }
 
+    function validateMessage(){
+        const message = messageField.value.trim();
+    
+        if (message.length < minimumCharacters) {
+            messageError.textContent =
+             "Please write at least 15 characters";
+            messageField.classList.add("is-error");
+            messageField.classList.remove("is-valid");
+            messageField.setAttribute("aria-invalid", "true");
+    
+            return false;
+        }
+    
+        messageError.textContent= "";
+        messageField.classList.remove("is-error");
+        messageField.classList.add("is-valid");
+        messageField.setAttribute("aria-invalid", "false");
+    
+            return true;
+    }
+
 
 
 
@@ -148,3 +171,11 @@ function validateEmail() {
     subjectField.addEventListener("blur", validateSubject);
 
     subjectField.addEventListener("change", validateSubject);
+
+    messageField.addEventListener("blur", validateMessage);
+
+    messageField.addEventListener("input", () => {
+        if(messageField.classList.contains("is-error")){
+            validateMessage();
+        }
+    });
