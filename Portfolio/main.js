@@ -98,12 +98,12 @@ function validateName(){
 }
 
 function validateEmail() {
-    const name = emailField.value.trim();
+    const email = emailField.value.trim();
 
     if (email === "") {
         emailError.textContent = "Please enter your email adress";
-        emailField.classList.add("is-error");
-        emailField.classList.remove("is-valid");
+        emailField.classList.remove("is-error");
+        emailField.classList.add("is-valid");
         emailField.setAttribute("aria-invalid", "true"); 
         
         return false;
@@ -171,8 +171,8 @@ function validateWebsite() {
 
     if (website === "") {
         websiteError.textContent = "";
-        emailField.classList.remove("is-error", "is-valid") ;
-        emailField.setAttribute("aria-invalid", "false"); 
+        websiteField.classList.remove("is-error", "is-valid") ;
+        websiteField.setAttribute("aria-invalid", "false"); 
         
         return true;
     }
