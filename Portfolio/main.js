@@ -1,5 +1,8 @@
 "use strict";
 
+const contactform = document.querySelector("#contact-form");
+const formMessage = document.querySelector("#form-message");
+
 const messageField = document.querySelector("#message");
 const characterCounter = document.querySelector("#message-counter");
 const characterCount = document.querySelector("#character-count");
@@ -19,6 +22,35 @@ const messageError = document.querySelector("#message-error");
 
 const websiteField = document.querySelector("#website");
 const websiteError = document.querySelector("#website-error");
+
+function clearValidationState() {
+    const fields = [
+        nameField,
+        emailField,
+        subjectField,
+        websiteField,
+        messageField
+    ];
+
+    const errorMessages = [
+        nameError,
+        emailError,
+        subjectError,
+        websiteError,
+        messageError
+    ];
+
+    fields.forEach((field) => {
+        field.classList.remove("is-error", "is-valid");
+        field.setAttribute("aria-invalid", "false");
+    });
+
+    errorMessages.forEach((errorMessage) => {
+        errorMessage.textContent = "";
+    });
+
+    updateCharacterCounter();
+}
 
 
 
@@ -163,23 +195,6 @@ function validateWebsite() {
 
      }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     messageField.addEventListener("input", updateCharacterCounter);
 
     updateCharacterCounter();
@@ -219,3 +234,39 @@ function validateWebsite() {
             validateWebsite();
         }
     });
+
+contactform.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const nameIsValid = validateName();
+    const emailIsValid = validateEmail();
+    const subjectIsValid = validateSubject();
+    const websiteIsValid = validateWebsite();
+    const messageIsValid = validateMessage();
+
+    const formIsValid =
+        nameIsValid &&
+        emailIsValid &&
+        subjectIsValid &&
+        websiteIsValid &&
+        messageIsValid;
+
+    if (!formIsValid) {
+        formMessage.textContent =
+        "Please correct the highlighted fields before sending.";
+
+        return;
+    }
+
+    const firstName = nameField.value.trim().split(" ")[0];
+
+    formMessage.textContent =
+    `Thanks for your feedback, ${firstName}!`;
+
+    contactform.reset();
+    clearValidationState();
+
+    window.setTimeout(() => {
+        formMessage.textContent = "";
+    }, 4000);
+});
