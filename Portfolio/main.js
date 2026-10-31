@@ -109,7 +109,7 @@ function validateEmail() {
         return false;
     }
 
-    if (!emailFieldvalidity.valid) {
+    if (!emailField.validity.valid) {
         emailError.textContent = "Please enter a valid email adress";
         emailField.classList.add("is-error");
         emailField.classList.remove("is-valid");
@@ -255,10 +255,17 @@ contactform.addEventListener("submit", (event) => {
         formMessage.textContent =
         "Please correct the highlighted fields before sending.";
 
+        formMessage.classList.remove("success-message");
+        formMessage.classList.add("form-message-error");
+
         return;
     }
 
     const firstName = nameField.value.trim().split(" ")[0];
+
+    formMessage.classList.remove("form-message-error");
+    formMessage.classList.add("success-message");
+
 
     formMessage.textContent =
     `Thanks for your feedback, ${firstName}!`;
@@ -268,5 +275,19 @@ contactform.addEventListener("submit", (event) => {
 
     window.setTimeout(() => {
         formMessage.textContent = "";
+        formMessage.classList.remove("success-message");
     }, 4000);
+});
+
+contactform.addEventListener("reset", () => {
+    window.setTimeout(() => {
+        clearValidationState();
+
+        formMessage.textContent = "";
+        formMessage.classList.remove(
+            "success-message",
+            "form-messsage-error"
+
+        );
+    }, 0);
 });
