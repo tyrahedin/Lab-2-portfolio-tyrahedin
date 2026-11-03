@@ -1,5 +1,7 @@
 "use strict";
 
+// GET HTML ELEMENTS AND SET VARIABLES //
+
 const clearButton = document.querySelector(".clear-button");
 
 const contactform = document.querySelector("#contact-form");
@@ -54,6 +56,8 @@ function clearValidationState() {
     updateCharacterCounter();
 }
 
+// CHARACTER COUNTER //
+
 function updateCharacterCounter() {
     const numberOfCharacters = messageField.value.trim().length;
     const charactersRemaining = minimumCharacters - numberOfCharacters;
@@ -76,6 +80,9 @@ function updateCharacterCounter() {
          }
     }
 
+// FORM VALIDATION //
+//Checks that the name contains at least 2 characters//
+
 function validateName(){
     const name = nameField.value.trim();
 
@@ -96,6 +103,8 @@ function validateName(){
         return true;
 }
 
+// Checks that the email address is not empty and has a valid format //
+
 function validateEmail() {
     const email = emailField.value.trim();
 
@@ -109,7 +118,7 @@ function validateEmail() {
     }
 
     if (!emailField.validity.valid) {
-        emailError.textContent = "Please enter a valid email adress";
+        emailError.textContent = "Please enter a valid email address";
         emailField.classList.add("is-error");
         emailField.classList.remove("is-valid");
         emailField.setAttribute("aria-invalid", "true");  
@@ -119,16 +128,18 @@ function validateEmail() {
 
     emailError.textContent = "";
     emailField.classList.add("is-valid");
-    emailField.classList.remove("is-");
+    emailField.classList.remove("is-error");
     emailField.setAttribute("aria-invalid", "false"); 
 
         return true;
 
      }
 
+     // Checks that the user has selected a subject //
+
      function validateSubject(){
         if (subjectField.value ==="") {
-            subjectError.textContent = "Pleae choose a topic";
+            subjectError.textContent = "Please choose a topic";
             subjectField.classList.add("is-error");
             subjectField.classList.remove("is-valid");
             subjectField.setAttribute("aria-invalid", "true");  
@@ -143,6 +154,8 @@ function validateEmail() {
 
             return true;
     }
+
+    // Checks that hte message containd at least 15 characters //
 
     function validateMessage(){
         const message = messageField.value.trim();
@@ -165,8 +178,10 @@ function validateEmail() {
             return true;
     }
 
-function validateWebsite() {
-    const website = websiteField.value.trim();
+    // Checks that the website URL is valid if a value has been entered //
+
+    function validateWebsite() {
+        const website = websiteField.value.trim();
 
     if (website === "") {
         websiteError.textContent = "";
@@ -177,7 +192,7 @@ function validateWebsite() {
     }
 
     if (!websiteField.validity.valid) {
-        websiteError.textContent = "Please enter a valid website adress, for example https://example.com.";
+        websiteError.textContent = "Please enter a valid website address, for example https://example.com.";
         websiteField.classList.add("is-error");
         websiteField.classList.remove("is-valid");
         websiteField.setAttribute("aria-invalid", "true");  
@@ -193,6 +208,9 @@ function validateWebsite() {
         return true;
 
      }
+
+    //   EVENT LISTENERS   //
+    // Updates the character counter whenever the user types //
 
     messageField.addEventListener("input", updateCharacterCounter);
 
@@ -234,6 +252,8 @@ function validateWebsite() {
         }
     });
 
+    // FORM SUBMISSION //
+
 contactform.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -243,6 +263,7 @@ contactform.addEventListener("submit", (event) => {
     const websiteIsValid = validateWebsite();
     const messageIsValid = validateMessage();
 
+    // Check if all form fields are valid //
     const formIsValid =
         nameIsValid &&
         emailIsValid &&
@@ -250,6 +271,7 @@ contactform.addEventListener("submit", (event) => {
         websiteIsValid &&
         messageIsValid;
 
+    // Display an error message if any field is invalid //
     if (!formIsValid) {
         formMessage.textContent =
         "Please correct the highlighted fields before sending.";
@@ -265,12 +287,12 @@ contactform.addEventListener("submit", (event) => {
     formMessage.classList.remove("form-message-error");
     formMessage.classList.add("success-message");
 
-
+    // Display a personalized success message //
     formMessage.textContent =
     `Thanks for your feedback, ${firstName}!`;
 
    
-
+    // Reset the form and clear validation messages after 4 seconds //
     window.setTimeout(() => {
         contactform.reset();
         clearValidationState();
@@ -278,6 +300,8 @@ contactform.addEventListener("submit", (event) => {
         formMessage.classList.remove("success-message");
     }, 4000);
 });
+
+    // FORM RESET AND CLEAR BUTTON //
 
 contactform.addEventListener("reset", () => {
     window.setTimeout(() => {
