@@ -1,5 +1,7 @@
 "use strict";
 
+const clearButton = document.querySelector(".clear-button");
+
 const contactform = document.querySelector("#contact-form");
 const formMessage = document.querySelector("#form-message");
 
@@ -52,9 +54,6 @@ function clearValidationState() {
     updateCharacterCounter();
 }
 
-
-
-
 function updateCharacterCounter() {
     const numberOfCharacters = messageField.value.trim().length;
     const charactersRemaining = minimumCharacters - numberOfCharacters;
@@ -101,9 +100,9 @@ function validateEmail() {
     const email = emailField.value.trim();
 
     if (email === "") {
-        emailError.textContent = "Please enter your email adress";
-        emailField.classList.remove("is-error");
-        emailField.classList.add("is-valid");
+        emailError.textContent = "Please enter your email address";
+        emailField.classList.add("is-error");
+        emailField.classList.remove("is-valid");
         emailField.setAttribute("aria-invalid", "true"); 
         
         return false;
@@ -119,8 +118,8 @@ function validateEmail() {
     }
 
     emailError.textContent = "";
-    emailField.classList.add("is-error");
-    emailField.classList.remove("is-valid");
+    emailField.classList.add("is-valid");
+    emailField.classList.remove("is-");
     emailField.setAttribute("aria-invalid", "false"); 
 
         return true;
@@ -270,10 +269,11 @@ contactform.addEventListener("submit", (event) => {
     formMessage.textContent =
     `Thanks for your feedback, ${firstName}!`;
 
-    contactform.reset();
-    clearValidationState();
+   
 
     window.setTimeout(() => {
+        contactform.reset();
+        clearValidationState();
         formMessage.textContent = "";
         formMessage.classList.remove("success-message");
     }, 4000);
@@ -283,11 +283,14 @@ contactform.addEventListener("reset", () => {
     window.setTimeout(() => {
         clearValidationState();
 
-        formMessage.textContent = "";
-        formMessage.classList.remove(
-            "success-message",
-            "form-messsage-error"
 
-        );
     }, 0);
+});
+
+clearButton.addEventListener("click", () => {
+    formMessage.textContent = "";
+    formMessage.classList.remove(
+        "success-message",
+        "form-message-error"
+    );
 });
