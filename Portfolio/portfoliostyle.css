@@ -730,14 +730,21 @@ margin-top: auto;
 .form-group input.is-error,
 .form-group textarea.is-error,
 .form-group select.is-error{
-    border: 2px solid #b42318;
+    border: 3px solid #b42318;
 }
 
 .form-group input.is-valid,
 .form-group textarea.is-valid,
 .form-group select.is-valid {
-    border: 2px solid #20744a;
+    border: 3px solid #20744a;
 }
+
+.form-group select:focus {
+    outline: 3px solid var (--color-action-1);
+    outline-offset: 2px;
+}
+
+
 
 footer{
     display: flex;

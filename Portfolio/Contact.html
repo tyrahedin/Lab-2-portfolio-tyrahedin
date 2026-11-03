@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tyra Hedins portfolio No. 113</title>
+    <link rel="stylesheet" href="portfoliostyle.css">
+</head>
+<body>
+    <header class="hero">
+        <div class="headerstyle"><h1>Tyra Hedin</h1>
+        <h3>UX / DIGITAL DESIGN</h3></div>
+
+
+        <nav class="navbar">
+
+           
+            <ul class="nav-länkar">
+                <li><a href="portfolio.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="Contact.html" class="active">Contact</a></li>
+        
+
+
+
+            </ul>
+        </nav>
+
+    </header>
+    <section class="contact-section">
+
+        <div class="contact-intro">
+            <p class="eyebrow">GET IN TOUCH</p>
+            <h1>Let's work together.</h1>
+            <p>
+                Have a project in mind or just want to say hello?
+                I'd love to hear from you.
+            </p>
+        </div>
+    
+        <form id="contact-form" novalidate>
+    
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name"
+                    placeholder="Your name"
+                    required
+                    aria-describedby="name-error"
+                >
+
+                <p id="name-error" class="field-error"></p>
+            </div>
+    
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email"
+                    placeholder="you@example.com"
+                    required                    
+                    aria-describedby="email-error"
+                    >
+    
+                    <p id="email-error" class="field-error"></p>
+            </div>
+    
+            <div class="form-group">
+                <label for="subject">Subject</label>
+
+                <select 
+                id="subject" 
+                name="subject" 
+                required
+                aria-describedby="subject-error">
+                    <option value="">Choose a topic</option>
+                    <option value="project">Project collaboration</option>
+                    <option value="portfolio">Portfolio feedback</option>
+                    <option value="other">Other</option>
+            
+                </select>
+                
+                <p id="subject-error" class="field-error"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="website">Website <span>(optional)</span></label>
+
+                <input
+                    type="url"
+                    id="website"
+                    name="website"
+                    placeholder="https://example.com"
+                    aria-describedby="website-error"
+                    >
+                 <p id="website-error" class="field-error"></p>
+            </div>
+    
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea 
+                    id="message" 
+                    name="message"
+                    placeholder="Write your message here..."
+                    rows="7"
+                    required
+                    aria-describedby="message-counter message-error"
+                ></textarea>
+
+                <p id="message-error" class="field-error"></p>
+
+                <p id="message-counter" class="character-counter" aria-live="polite">
+                    <span id="character-count">0</span> / 15 characters- minimum 15 characters required.
+                </p>
+            </div>
+
+    
+            <div class="form-actions">
+                <button type="submit">Send message</button>
+                <button type="reset" class="clear-button">Clear</button>
+            </div>
+    
+            <p id="form-message" aria-live="polite"></p>
+    
+        </form>
+    
+    </section>
+    <footer>
+
+        <h1>LET'S CREATE SOMETHING
+            MEANINGFUL TOGETHER.</h1>
+      <div class="footer-info">
+                <p>UX DESIGNER</p>
+                <p>DIGITAL DESIGN</p>
+                <p>HTML / CSS</p>
+            </div>
+    
+            <a href="contact.html" class="footer-button"><h2>Let's talk →</h2>
+                
+            </a>
+    
+            <div class="footer-links">
+                <a href="mailto:tyra.hedin@live.se">Email: tyra.hedin@live.se
+                </a>
+                <a href="https://www.linkedin.com/">LinkedIn: @tyrahedin</a>
+            </div>
+    
+            
+        </div>
+        <p>Portfolio No. 113</p>
+            <div class="watermark"> © 2026 Tyra Hedin
+    Designed & coded by me
+    </div> 
+    
+    
+        
+    </footer>  
+    <script src="main.js"></script>
+</body>
+</html>
