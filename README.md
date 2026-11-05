@@ -13,8 +13,7 @@ Grade 3
 
 * Feedback form with added functions that gives the user immeniate feedback on their input.
 * Live character counter for the message field
-* Error messages and visual feedback for invalid and valid fields
-* Accessible feedback using labels, aria-describedby, aria-iinvalid and aria-live.
+* Error messages and visual feedback for invalid and valid field.
 * Personalised success message after a valid form submission
 * Clear button that resets the form and validation feedback
 * Responsive design for mobile and desktop
